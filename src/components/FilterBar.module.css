@@ -1,0 +1,59 @@
+.filterBar {
+    padding: 1.5rem 0;
+    background: var(--card-bg);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 73px;
+    /* Just below navbar */
+    z-index: 900;
+    backdrop-filter: blur(10px);
+}
+
+.filterContent {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+}
+
+.filterGroup {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    white-space: nowrap;
+}
+
+.filterLabel {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--muted);
+}
+
+.select {
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    border: 1px solid var(--border);
+    background: var(--background);
+    font-size: 0.85rem;
+    color: var(--foreground);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.select:hover {
+    border-color: var(--secondary);
+}
+
+.resetBtn {
+    font-size: 0.85rem;
+    color: var(--secondary);
+    font-weight: 600;
+    margin-left: auto;
+}
+
+@media (max-width: 768px) {
+    .filterBar {
+        top: 60px;
+    }
+}

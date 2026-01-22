@@ -1,36 +1,206 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🌟 Torodo-Avenue
 
-## Getting Started
+**La marketplace premium de seconde main pour le Sénégal** 🇸🇳
 
-First, run the development server:
+Torodo-Avenue est une plateforme moderne inspirée de Vinted, adaptée au marché sénégalais avec des fonctionnalités de paiement mobile local (Wave & Orange Money).
 
+---
+
+## ✨ Fonctionnalités
+
+### 🛍️ **Marketplace**
+- ✅ Navigation et recherche de produits
+- ✅ Filtres avancés (catégorie, prix, état)
+- ✅ Pages produits détaillées
+- ✅ Profils vendeurs
+- ✅ Formulaire de mise en vente
+
+### 🔐 **Authentification**
+- ✅ Inscription/Connexion par email
+- ✅ Connexion Google OAuth
+- ✅ Sessions sécurisées avec NextAuth.js
+- ✅ Gestion de profil utilisateur
+
+### 💬 **Messagerie**
+- ✅ Chat en temps réel entre acheteurs et vendeurs
+- ✅ Historique des conversations
+- ✅ Notifications de nouveaux messages
+
+### 💳 **Paiements Locaux**
+- ✅ Intégration Wave
+- ✅ Intégration Orange Money
+- ✅ Checkout sécurisé
+- ✅ Historique des transactions
+
+### 📸 **Upload d'Images**
+- ✅ Upload via Cloudinary
+- ✅ Optimisation automatique
+- ✅ CDN global
+
+---
+
+## 🚀 Installation
+
+### Prérequis
+- Node.js 18+ 
+- npm ou yarn
+- Compte Cloudinary (gratuit)
+- Comptes API Wave & Orange Money (optionnel pour dev)
+
+### 1. Cloner le projet
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/votre-username/torodo-avenue.git
+cd torodo-avenue
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Installer les dépendances
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3. Configuration
+Copiez `.env.example` vers `.env` et remplissez les variables:
+```bash
+cp .env.example .env
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+**Variables essentielles:**
+```env
+DATABASE_URL="file:./dev.db"
+NEXTAUTH_URL="http://localhost:3000"
+NEXTAUTH_SECRET="générez-avec-openssl-rand-base64-32"
+NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME="votre-cloud-name"
+```
 
-## Learn More
+### 4. Base de données
+```bash
+npx prisma db push
+npx prisma db seed
+```
 
-To learn more about Next.js, take a look at the following resources:
+### 5. Lancer le serveur
+```bash
+npm run dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Ouvrez [http://localhost:3000](http://localhost:3000)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 📦 Stack Technique
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Framework**: Next.js 15+ (App Router)
+- **Langage**: TypeScript
+- **Base de données**: SQLite (dev) / MongoDB (production)
+- **ORM**: Prisma
+- **Authentification**: NextAuth.js
+- **Upload**: Cloudinary
+- **Paiements**: Wave API, Orange Money API
+- **Styling**: CSS Modules + Variables CSS
+- **Icons**: Lucide React
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 🌍 Déploiement
+
+### Option 1: Vercel + MongoDB Atlas (Recommandé)
+
+1. **Créer un compte MongoDB Atlas**
+   - Allez sur [mongodb.com/atlas](https://www.mongodb.com/atlas)
+   - Créez un cluster gratuit
+   - Récupérez votre connection string
+
+2. **Mettre à jour Prisma pour MongoDB**
+   ```prisma
+   datasource db {
+     provider = "mongodb"
+     url      = env("DATABASE_URL")
+   }
+   ```
+
+3. **Déployer sur Vercel**
+   ```bash
+   npm install -g vercel
+   vercel
+   ```
+
+4. **Configurer les variables d'environnement**
+   - Dans le dashboard Vercel
+   - Ajoutez toutes les variables de `.env`
+
+### Option 2: Autres plateformes
+- **Railway**: Support MongoDB natif
+- **Render**: Déploiement gratuit
+- **DigitalOcean**: VPS avec contrôle total
+
+---
+
+## 🔧 Configuration des APIs
+
+### Google OAuth
+1. Allez sur [console.cloud.google.com](https://console.cloud.google.com)
+2. Créez un nouveau projet
+3. Activez Google+ API
+4. Créez des identifiants OAuth 2.0
+5. Ajoutez `http://localhost:3000/api/auth/callback/google` aux URIs de redirection
+
+### Cloudinary
+1. Inscription sur [cloudinary.com](https://cloudinary.com)
+2. Récupérez vos credentials dans le Dashboard
+3. Ajoutez-les au `.env`
+
+### Wave & Orange Money
+1. Contactez Wave Sénégal pour l'API
+2. Contactez Orange Money pour l'API
+3. Suivez leur documentation d'intégration
+
+---
+
+## 📱 Fonctionnalités à venir
+
+- [ ] Application mobile (React Native)
+- [ ] Notifications push
+- [ ] Système de reviews/notes
+- [ ] Livraison intégrée
+- [ ] Programme de fidélité
+- [ ] Support multilingue (Français/Wolof)
+
+---
+
+## 🤝 Contribution
+
+Les contributions sont les bienvenues ! 
+
+1. Fork le projet
+2. Créez une branche (`git checkout -b feature/AmazingFeature`)
+3. Commit vos changements (`git commit -m 'Add AmazingFeature'`)
+4. Push vers la branche (`git push origin feature/AmazingFeature`)
+5. Ouvrez une Pull Request
+
+---
+
+## 📄 Licence
+
+MIT License - voir le fichier [LICENSE](LICENSE)
+
+---
+
+## 👨‍💻 Auteur
+
+Créé avec ❤️ pour le marché sénégalais
+
+**Contact**: [votre-email@example.com](mailto:votre-email@example.com)
+
+---
+
+## 🙏 Remerciements
+
+- Design inspiré de Vinted
+- Communauté Next.js
+- Prisma Team
+- Cloudinary
+- Wave & Orange Money Sénégal
+
+---
+
+**⭐ Si ce projet vous plaît, n'hésitez pas à lui donner une étoile !**

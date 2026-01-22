@@ -1,0 +1,156 @@
+.messagesPage {
+    height: calc(100vh - 150px);
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin: 2rem 0;
+}
+
+.sidebar {
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebarHeader {
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.conversationList {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.conversationItem {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+    transition: var(--transition);
+    border-bottom: 1px solid var(--border);
+}
+
+.conversationItem:hover {
+    background: var(--background);
+}
+
+.conversationItem.active {
+    background: rgba(212, 175, 55, 0.1);
+    border-left: 4px solid var(--secondary);
+}
+
+.userAvatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.convInfo h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.2rem;
+}
+
+.lastMsg {
+    font-size: 0.85rem;
+    color: var(--muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 180px;
+}
+
+/* Chat Area */
+.chatArea {
+    display: flex;
+    flex-direction: column;
+}
+
+.chatHeader {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.messageList {
+    flex: 1;
+    padding: 2rem;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background: var(--background);
+}
+
+.message {
+    max-width: 70%;
+    padding: 0.8rem 1.2rem;
+    border-radius: 18px;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+.received {
+    align-self: flex-start;
+    background: var(--card-bg);
+    color: var(--foreground);
+    border: 1px solid var(--border);
+    border-bottom-left-radius: 4px;
+}
+
+.sent {
+    align-self: flex-end;
+    background: var(--secondary);
+    color: white;
+    border-bottom-right-radius: 4px;
+}
+
+.chatInput {
+    padding: 1.5rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    gap: 1rem;
+}
+
+.input {
+    flex: 1;
+    padding: 0.8rem 1.2rem;
+    border-radius: 50px;
+    border: 1px solid var(--border);
+    background: var(--background);
+}
+
+.sendBtn {
+    background: var(--secondary);
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+}
+
+.sendBtn:hover {
+    transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+    .messagesPage {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        display: none;
+        /* In a real app we'd have a mobile view */
+    }
+}
