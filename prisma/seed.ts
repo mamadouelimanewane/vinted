@@ -36,12 +36,40 @@ async function main() {
     // Create Products
     await prisma.product.create({
         data: {
-            name: 'Grand Boubou Prestige',
-            description: 'Magnifique boubou traditionnel sénégalais en coton de haute qualité. Broderies faites à la main.',
+            name: 'Robe Ankara Colorée Prestige',
+            description: 'Magnifique robe en tissu Ankara avec motifs géométriques éclatants, manches évasées.',
             price: 65000,
-            image: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?q=80&w=800&auto=format&fit=crop',
+            image: '/images/ankara-dress-colorful.jpg',
             brand: 'Artisanat Sénégalais',
-            size: 'XL / 44 / 16',
+            size: 'M / 38 / 10',
+            condition: 'Neuf',
+            userId: user1.id,
+            categoryId: categories['Traditionnel'],
+        },
+    });
+
+    await prisma.product.create({
+        data: {
+            name: 'Ensemble Wax Jaune Premium',
+            description: 'Ensemble veste et jupe en tissu Wax jaune avec motifs africains, idéal pour cérémonies.',
+            price: 125000,
+            image: '/images/wax-ensemble-yellow.jpg',
+            brand: 'Afro Couture',
+            size: 'L / 40 / 12',
+            condition: 'Excellent état',
+            userId: user2.id,
+            categoryId: categories['Traditionnel'],
+        },
+    });
+
+    await prisma.product.create({
+        data: {
+            name: 'Tenue Africaine Moderne',
+            description: 'Ensemble africain contemporain en tissu Wax, design unique et élégant.',
+            price: 85000,
+            image: '/images/african-fashion-modern.jpg',
+            brand: 'Dakar Fashion',
+            size: 'M / 38 / 10',
             condition: 'Très bon état',
             userId: user1.id,
             categoryId: categories['Traditionnel'],
@@ -50,10 +78,10 @@ async function main() {
 
     await prisma.product.create({
         data: {
-            name: 'Robe de Mariée Royale',
-            description: 'Robe de mariée d\'exception, design moderne avec traîne élégante.',
+            name: 'Robe de Mariée Royale Blanche',
+            description: 'Robe de mariée d\'exception, design moderne avec détails perlés sur les manches.',
             price: 450000,
-            image: 'https://images.unsplash.com/photo-1519657337289-077653f724ed?q=80&w=800&auto=format&fit=crop',
+            image: '/images/wedding-dress-white.jpg',
             brand: 'Torodo Bridal',
             size: 'L / 40 / 12',
             condition: 'Neuf',
@@ -64,28 +92,14 @@ async function main() {
 
     await prisma.product.create({
         data: {
-            name: 'Robe de Soirée Bleue Royale',
-            description: 'Robe de cocktail chic, couleur bleue vibrante, idéale pour les cérémonies.',
-            price: 85000,
-            image: 'https://images.unsplash.com/photo-1595777457583-95e059d581b8?q=80&w=800&auto=format&fit=crop',
-            brand: 'Dakar Couture',
-            size: 'M / 38 / 10',
-            condition: 'Excellent état',
-            userId: user1.id,
-            categoryId: categories['Femmes'],
-        },
-    });
-
-    await prisma.product.create({
-        data: {
-            name: 'Ensemble Wax Moderne',
-            description: 'Robe en wax aux motifs géométriques, manches évasées.',
-            price: 35000,
-            image: 'https://images.unsplash.com/photo-1558769132-cb1aea1c8cfe?q=80&w=800&auto=format&fit=crop',
+            name: 'Manteau Wax Multicolore',
+            description: 'Manteau/robe en tissu Wax aux motifs vibrants, ceinturé à la taille.',
+            price: 55000,
+            image: '/images/wax-coat-colorful.jpg',
             brand: 'Afro Style',
             size: 'S / 36 / 8',
-            condition: 'Très bon état',
-            userId: user2.id,
+            condition: 'Comme neuf',
+            userId: user1.id,
             categoryId: categories['Traditionnel'],
         },
     });

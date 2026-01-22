@@ -19,7 +19,7 @@ const Hero = () => {
       <style jsx>{`
         .hero {
           height: 600px;
-          background: linear-gradient(to right, rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://images.unsplash.com/photo-1558769132-cb1aea1c8cfe?q=80&w=2070&auto=format&fit=crop');
+          background: linear-gradient(to right, rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('/images/african-fashion-modern.jpg');
           background-size: cover;
           background-position: center;
           display: flex;
