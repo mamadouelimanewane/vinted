@@ -39,7 +39,7 @@ async function main() {
             name: 'Grand Boubou Prestige',
             description: 'Magnifique boubou traditionnel sénégalais en coton de haute qualité. Broderies faites à la main.',
             price: 65000,
-            image: 'https://images.unsplash.com/photo-1583121274602-3e2820c69888?q=80&w=2070&auto=format&fit=crop',
+            image: '/images/ankara-dress-1.jpg',
             brand: 'Artisanat Sénégalais',
             size: 'XL / 44 / 16',
             condition: 'Très bon état',
@@ -50,29 +50,43 @@ async function main() {
 
     await prisma.product.create({
         data: {
-            name: 'Blazer Slim Fit Premium',
-            description: 'Veste de costume moderne, coupe ajustée, idéale pour les occasions professionnelles.',
-            price: 25000,
-            image: 'https://images.unsplash.com/photo-1594932224010-75f4305826af?q=80&w=1780&auto=format&fit=crop',
-            brand: 'Zara Men',
-            size: 'M / 38 / 10',
-            condition: 'Comme neuf',
+            name: 'Robe de Mariée Royale',
+            description: 'Robe de mariée d\'exception, design moderne avec traîne élégante.',
+            price: 450000,
+            image: '/images/wedding-dress.jpg',
+            brand: 'Torodo Bridal',
+            size: 'L / 40 / 12',
+            condition: 'Neuf',
             userId: user2.id,
-            categoryId: categories['Hommes'],
+            categoryId: categories['Femmes'],
         },
     });
 
     await prisma.product.create({
         data: {
-            name: 'Robe de Soirée Étoilée',
-            description: 'Robe élégante en satin pour vos soirées et cérémonies.',
-            price: 45000,
-            image: 'https://images.unsplash.com/photo-1566174053879-31528523f8ae?q=80&w=1908&auto=format&fit=crop',
-            brand: 'Sisters of Africa',
-            size: 'S / 36 / 8',
-            condition: 'Très bon état',
+            name: 'Robe de Soirée Bleue Royale',
+            description: 'Robe de cocktail chic, couleur bleue vibrante, idéale pour les cérémonies.',
+            price: 85000,
+            image: '/images/blue-evening-dress.jpg',
+            brand: 'Dakar Couture',
+            size: 'M / 38 / 10',
+            condition: 'Excellent état',
             userId: user1.id,
             categoryId: categories['Femmes'],
+        },
+    });
+
+    await prisma.product.create({
+        data: {
+            name: 'Ensemble Wax Moderne',
+            description: 'Robe en wax aux motifs géométriques, manches évasées.',
+            price: 35000,
+            image: '/images/ankara-dress-2.jpg',
+            brand: 'Afro Style',
+            size: 'S / 36 / 8',
+            condition: 'Très bon état',
+            userId: user2.id,
+            categoryId: categories['Traditionnel'],
         },
     });
 
