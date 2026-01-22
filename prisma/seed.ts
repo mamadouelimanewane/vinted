@@ -36,10 +36,10 @@ async function main() {
     // Create Products
     await prisma.product.create({
         data: {
-            name: 'Boubou Elégant Bleu',
+            name: 'Grand Boubou Prestige',
             description: 'Magnifique boubou traditionnel sénégalais en coton de haute qualité. Broderies faites à la main.',
-            price: 45000,
-            image: 'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=500&h=700&fit=crop',
+            price: 65000,
+            image: 'https://images.unsplash.com/photo-1583121274602-3e2820c69888?q=80&w=2070&auto=format&fit=crop',
             brand: 'Artisanat Sénégalais',
             size: 'XL / 44 / 16',
             condition: 'Très bon état',
@@ -50,13 +50,13 @@ async function main() {
 
     await prisma.product.create({
         data: {
-            name: 'Veste Zara Homme',
-            description: 'Veste de costume Zara, portée quelques fois seulement.',
-            price: 12500,
-            image: 'https://images.unsplash.com/photo-1589310243389-96a5483213a8?w=500&h=700&fit=crop',
-            brand: 'Zara',
+            name: 'Blazer Slim Fit Premium',
+            description: 'Veste de costume moderne, coupe ajustée, idéale pour les occasions professionnelles.',
+            price: 25000,
+            image: 'https://images.unsplash.com/photo-1594932224010-75f4305826af?q=80&w=1780&auto=format&fit=crop',
+            brand: 'Zara Men',
             size: 'M / 38 / 10',
-            condition: 'Bon état',
+            condition: 'Comme neuf',
             userId: user2.id,
             categoryId: categories['Hommes'],
         },
@@ -64,10 +64,10 @@ async function main() {
 
     await prisma.product.create({
         data: {
-            name: 'Robe de Soie Rouge',
-            description: 'Robe élégante pour soirées.',
-            price: 35000,
-            image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=500&h=700&fit=crop',
+            name: 'Robe de Soirée Étoilée',
+            description: 'Robe élégante en satin pour vos soirées et cérémonies.',
+            price: 45000,
+            image: 'https://images.unsplash.com/photo-1566174053879-31528523f8ae?q=80&w=1908&auto=format&fit=crop',
             brand: 'Sisters of Africa',
             size: 'S / 36 / 8',
             condition: 'Très bon état',
