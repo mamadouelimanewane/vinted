@@ -19,9 +19,9 @@ const Hero = () => {
       <style jsx>{`
         .hero {
           height: 600px;
-          background: linear-gradient(to right, rgba(255,255,255,0.3), rgba(0,0,0,0.2)), url('/images/fashion-model-bg.jpg');
+          background: linear-gradient(to right, rgba(0,0,0,0.4), rgba(0,0,0,0.2)), url('/images/blue-evening-dress.jpg');
           background-size: cover;
-          background-position: center 20%;
+          background-position: center 30%;
           display: flex;
           align-items: center;
           position: relative;
