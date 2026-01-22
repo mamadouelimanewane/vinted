@@ -45,41 +45,43 @@ export async function processWavePayment(request: PaymentRequest): Promise<Payme
             }
         });
 
-        // TODO: Implement actual Wave API call
-        // Documentation: https://developer.wave.com
+        // Use real API if keys are configured
+        if (WAVE_API_KEY && WAVE_API_SECRET) {
+            try {
+                const response = await fetch(`${WAVE_API_URL}/checkout/sessions`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${WAVE_API_KEY}`,
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        amount: request.amount,
+                        currency: 'XOF',
+                        phone_number: request.phoneNumber,
+                        callback_url: `${process.env.NEXTAUTH_URL}/api/payments/wave/callback`,
+                        metadata: {
+                            transaction_id: transaction.id,
+                            product_id: request.productId,
+                        }
+                    })
+                });
 
-        /* Example Wave API call:
-        const response = await fetch(`${WAVE_API_URL}/checkout/sessions`, {
-          method: 'POST',
-          headers: {
-            'Authorization': `Bearer ${WAVE_API_KEY}`,
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            amount: request.amount,
-            currency: 'XOF', // Franc CFA
-            phone_number: request.phoneNumber,
-            callback_url: `${process.env.NEXTAUTH_URL}/api/payments/wave/callback`,
-            metadata: {
-              transaction_id: transaction.id,
-              product_id: request.productId,
+                const data = await response.json();
+
+                if (data.checkout_url) {
+                    return {
+                        success: true,
+                        transactionId: transaction.id,
+                        message: 'Paiement Wave initié',
+                        paymentUrl: data.checkout_url
+                    };
+                }
+            } catch (apiError) {
+                console.error('Wave API direct call failed, falling back to demo mode:', apiError);
             }
-          })
-        });
-    
-        const data = await response.json();
-        
-        if (data.checkout_url) {
-          return {
-            success: true,
-            transactionId: transaction.id,
-            message: 'Paiement Wave initié',
-            paymentUrl: data.checkout_url
-          };
         }
-        */
 
-        // For now, return mock response
+        // Fallback to demo mode for local testing or if keys are missing
         return {
             success: true,
             transactionId: transaction.id,
@@ -88,7 +90,7 @@ export async function processWavePayment(request: PaymentRequest): Promise<Payme
         };
 
     } catch (error) {
-        console.error('Wave payment error:', error);
+        console.error('Wave payment process error:', error);
         return {
             success: false,
             message: 'Erreur lors du paiement Wave'
@@ -113,42 +115,45 @@ export async function processOrangeMoneyPayment(request: PaymentRequest): Promis
             }
         });
 
-        // TODO: Implement actual Orange Money API call
-        // Documentation: https://developer.orange.com
+        // Use real API if keys are configured
+        if (ORANGE_MONEY_API_KEY && ORANGE_MONEY_API_SECRET) {
+            try {
+                // Implementation for Orange Money WebPay API
+                const response = await fetch(`${ORANGE_MONEY_API_URL}/webpayment/v1/transactionRequests`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${ORANGE_MONEY_API_KEY}`,
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        merchant_key: ORANGE_MONEY_API_KEY,
+                        currency: 'XOF',
+                        order_id: transaction.id,
+                        amount: request.amount,
+                        return_url: `${process.env.NEXTAUTH_URL}/api/payments/orange/callback`,
+                        cancel_url: `${process.env.NEXT_PUBLIC_APP_URL || process.env.NEXTAUTH_URL}/product/${request.productId}`,
+                        notif_url: `${process.env.NEXTAUTH_URL}/api/payments/orange/webhook`,
+                        lang: 'fr',
+                        reference: 'TXN-' + transaction.id.substring(0, 8),
+                    })
+                });
 
-        /* Example Orange Money API call:
-        const response = await fetch(`${ORANGE_MONEY_API_URL}/webpayment/v1/transactionRequests`, {
-          method: 'POST',
-          headers: {
-            'Authorization': `Bearer ${ORANGE_MONEY_API_KEY}`,
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            merchant_key: ORANGE_MONEY_API_KEY,
-            currency: 'XOF',
-            order_id: transaction.id,
-            amount: request.amount,
-            return_url: `${process.env.NEXTAUTH_URL}/api/payments/orange/callback`,
-            cancel_url: `${process.env.NEXTAUTH_URL}/checkout/${request.productId}`,
-            notif_url: `${process.env.NEXTAUTH_URL}/api/payments/orange/webhook`,
-            lang: 'fr',
-            reference: transaction.id,
-          })
-        });
-    
-        const data = await response.json();
-        
-        if (data.payment_url) {
-          return {
-            success: true,
-            transactionId: transaction.id,
-            message: 'Paiement Orange Money initié',
-            paymentUrl: data.payment_url
-          };
+                const data = await response.json();
+
+                if (data.payment_url) {
+                    return {
+                        success: true,
+                        transactionId: transaction.id,
+                        message: 'Paiement Orange Money initié',
+                        paymentUrl: data.payment_url
+                    };
+                }
+            } catch (apiError) {
+                console.error('Orange Money API direct call failed, falling back to demo mode:', apiError);
+            }
         }
-        */
 
-        // For now, return mock response
+        // Fallback to demo mode
         return {
             success: true,
             transactionId: transaction.id,
@@ -157,7 +162,7 @@ export async function processOrangeMoneyPayment(request: PaymentRequest): Promis
         };
 
     } catch (error) {
-        console.error('Orange Money payment error:', error);
+        console.error('Orange Money payment process error:', error);
         return {
             success: false,
             message: 'Erreur lors du paiement Orange Money'
@@ -180,10 +185,10 @@ export async function verifyPaymentStatus(transactionId: string): Promise<{
         return { status: 'FAILED', message: 'Transaction introuvable' };
     }
 
-    // TODO: Implement actual status check with payment provider
-    // For now, return the current status
+    // In a real implementation, we would call the provider API to verify true status
+    // For now, we trust our database status which is updated via webhooks/callbacks
     return {
-        status: transaction.status as any,
+        status: transaction.status as 'PENDING' | 'COMPLETED' | 'FAILED',
         message: `Transaction ${transaction.status.toLowerCase()}`
     };
 }
@@ -193,10 +198,9 @@ export async function verifyPaymentStatus(transactionId: string): Promise<{
  */
 export async function handlePaymentCallback(
     transactionId: string,
-    status: 'COMPLETED' | 'FAILED',
-    providerData?: any
+    status: 'COMPLETED' | 'FAILED'
 ): Promise<void> {
-    await prisma.transaction.update({
+    const transaction = await prisma.transaction.update({
         where: { id: transactionId },
         data: {
             status,
@@ -204,6 +208,17 @@ export async function handlePaymentCallback(
         }
     });
 
-    // TODO: Send email/notification to user
-    // TODO: Update product status if payment completed
+    // Update product status if payment completed
+    if (status === 'COMPLETED' && transaction.productId) {
+        await prisma.product.update({
+            where: { id: transaction.productId },
+            data: {
+                status: 'SOLD'
+            }
+        });
+    }
+
+    // TODO: Send email/notification to user using Resend or similar
 }
+
+

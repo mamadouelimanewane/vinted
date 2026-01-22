@@ -19,7 +19,6 @@ async function main() {
 
     const user2 = await prisma.user.create({
         data: {
-            id: 'cm01',
             name: 'Moussa S',
             email: 'moussa@example.com',
             image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&h=100&fit=crop',
@@ -40,7 +39,7 @@ async function main() {
             name: 'Boubou Elégant Bleu',
             description: 'Magnifique boubou traditionnel sénégalais en coton de haute qualité. Broderies faites à la main.',
             price: 45000,
-            image: '/products/boubou-1.jpg',
+            image: 'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=500&h=700&fit=crop',
             brand: 'Artisanat Sénégalais',
             size: 'XL / 44 / 16',
             condition: 'Très bon état',

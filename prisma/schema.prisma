@@ -74,6 +74,7 @@ model Product {
   brand       String?
   size        String?
   condition   String?
+  status      String   @default("AVAILABLE")
   userId      String   @db.ObjectId
   categoryId  String?  @db.ObjectId
   createdAt   DateTime @default(now())
