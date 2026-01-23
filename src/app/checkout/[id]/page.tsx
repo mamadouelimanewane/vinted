@@ -36,11 +36,11 @@ export default async function CheckoutPage({ params }: { params: { id: string } 
                             <h3 className={styles.summaryTitle}>Mode de paiement local</h3>
                             <div className={styles.paymentMethods}>
                                 <div className={`${styles.methodCard} ${styles.active}`}>
-                                    <img src="/logos/wave.png" alt="Wave" className={styles.logo} />
+                                    <img src="/images/wave-logo.jpg" alt="Wave" className={styles.logo} />
                                     <span className={styles.methodLabel}>Wave</span>
                                 </div>
                                 <div className={styles.methodCard}>
-                                    <img src="/logos/orange_money.png" alt="Orange Money" className={styles.logo} />
+                                    <img src="/images/om-logo.png" alt="Orange Money" className={styles.logo} />
                                     <span className={styles.methodLabel}>Orange Money</span>
                                 </div>
                             </div>
