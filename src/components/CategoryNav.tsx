@@ -5,97 +5,119 @@ import Link from 'next/link';
 import { ChevronDown } from 'lucide-react';
 
 const categories = [
-    {
-        name: 'Femmes',
-        subcategories: [
-            { name: 'Vêtements', items: ['Robes', 'Hauts & T-shirts', 'Pantalons & Leggings', 'Pulls & Gilets', 'Manteaux & Vestes', 'Jupes'] },
-            { name: 'Chaussures', items: ['Bottes', 'Baskets', 'Sandales', 'Talons', 'Plat'] },
-            { name: 'Sacs', items: ['Sacs à main', 'Sacs à dos', 'Sacs bandoulière', 'Pochettes'] },
-            { name: 'Accessoires', items: ['Bijoux', 'Montres', 'Echarpes', 'Chapeaux'] },
-            { name: 'Beauté', items: ['Maquillage', 'Parfums', 'Soins', 'Cheveux'] },
-        ]
-    },
-    {
-        name: 'Hommes',
-        subcategories: [
-            { name: 'Vêtements', items: ['T-shirts', 'Chemises', 'Pulls & Gilets', 'Manteaux & Vestes', 'Pantalons', 'Costumes'] },
-            { name: 'Chaussures', items: ['Baskets', 'Bottes', 'Mocassins', 'Sandales'] },
-            { name: 'Accessoires', items: ['Montres', 'Ceintures', 'Chapeaux & Casquettes', 'Lunettes de soleil'] },
-            { name: 'Soins', items: ['Parfums', 'Soins visage', 'Rasage'] },
-        ]
-    },
-    {
-        name: 'Enfants',
-        subcategories: [
-            { name: 'Filles', items: ['Vêtements', 'Chaussures', 'Accessoires'] },
-            { name: 'Garçons', items: ['Vêtements', 'Chaussures', 'Accessoires'] },
-            { name: 'Jouets', items: ['Jeux de construction', 'Poupées', 'Jeux de société'] },
-            { name: 'Soin bébé', items: ['Biberons', 'Toilets', 'Promenade'] },
-        ]
-    },
-    {
-        name: 'Maison',
-        subcategories: [
-            { name: 'Textiles', items: ['Linge de lit', 'Rideaux', 'Tapis'] },
-            { name: 'Décoration', items: ['Cadres', 'Bougies', 'Vases'] },
-            { name: 'Art de la table', items: ['Vaisselle', 'Verres', 'Couverts'] },
-        ]
-    },
-    {
-        name: 'Traditionnel', subcategories: [
-            { name: 'Femmes', items: ['Boubous', 'Robes Wax', 'Ensembles', 'Tissus'] },
-            { name: 'Hommes', items: ['Grands Boubous', 'Tuniques', 'Ensembles', 'Bazin'] },
-            { name: 'Accessoires', items: ['Bijoux', 'Sacs', 'Chaussures'] },
-        ]
-    }, // Custom category for the market
+  {
+    name: 'Femmes',
+    subcategories: [
+      { name: 'Vêtements', items: ['Robes', 'Hauts & T-shirts', 'Pantalons & Leggings', 'Pulls & Gilets', 'Manteaux & Vestes', 'Jupes', 'Jeans', 'Shorts', 'Combinaisons', 'Robes de soirée', 'Costumes & Tailleurs'] },
+      { name: 'Chaussures', items: ['Bottes', 'Baskets', 'Sandales', 'Talons', 'Chaussures plates', 'Mocassins', 'Chaussures de sport', 'Bottines'] },
+      { name: 'Sacs', items: ['Sacs à main', 'Sacs à dos', 'Sacs bandoulière', 'Pochettes', 'Sacs de voyage', 'Portefeuilles'] },
+      { name: 'Accessoires', items: ['Bijoux', 'Montres', 'Écharpes', 'Chapeaux', 'Lunettes de soleil', 'Gants', 'Ceintures', 'Porte-clés'] },
+      { name: 'Beauté', items: ['Maquillage', 'Parfums', 'Soins visage', 'Soins corps', 'Cheveux', 'Vernis à ongles'] },
+      { name: 'Sous-vêtements', items: ['Soutiens-gorge', 'Culottes', 'Pyjamas & Nuisettes', 'Maillots de bain'] },
+    ]
+  },
+  {
+    name: 'Hommes',
+    subcategories: [
+      { name: 'Vêtements', items: ['T-shirts', 'Chemises', 'Pulls & Gilets', 'Manteaux & Vestes', 'Pantalons', 'Jeans', 'Shorts', 'Costumes', 'Survêtements', 'Polos'] },
+      { name: 'Chaussures', items: ['Baskets', 'Bottes', 'Mocassins', 'Sandales', 'Chaussures de sport', 'Chaussures habillées'] },
+      { name: 'Accessoires', items: ['Montres', 'Ceintures', 'Chapeaux & Casquettes', 'Lunettes de soleil', 'Portefeuilles', 'Sacs', 'Écharpes', 'Gants'] },
+      { name: 'Sous-vêtements', items: ['Caleçons & Boxers', 'Chaussettes', 'Pyjamas', 'Maillots de bain'] },
+      { name: 'Soins', items: ['Parfums', 'Soins visage', 'Rasage', 'Soins corps'] },
+    ]
+  },
+  {
+    name: 'Enfants',
+    subcategories: [
+      { name: 'Filles (2-16 ans)', items: ['Robes', 'T-shirts & Hauts', 'Pantalons', 'Pulls & Gilets', 'Manteaux & Vestes', 'Jupes', 'Chaussures', 'Sacs & Accessoires'] },
+      { name: 'Garçons (2-16 ans)', items: ['T-shirts', 'Chemises', 'Pantalons', 'Pulls & Gilets', 'Manteaux & Vestes', 'Shorts', 'Chaussures', 'Accessoires'] },
+      { name: 'Bébés (0-24 mois)', items: ['Bodies', 'Grenouillères', 'Ensembles', 'Chaussures', 'Accessoires bébé'] },
+      { name: 'Jouets', items: ['Jeux de construction', 'Poupées', 'Jeux de société', 'Peluches', 'Jeux éducatifs', 'Puzzles'] },
+      { name: 'Soin bébé', items: ['Biberons', 'Poussettes', 'Sièges auto', 'Lits & Berceaux', 'Chaises hautes'] },
+    ]
+  },
+  {
+    name: 'Maison',
+    subcategories: [
+      { name: 'Textiles', items: ['Linge de lit', 'Rideaux', 'Tapis', 'Coussins', 'Plaids', 'Serviettes'] },
+      { name: 'Décoration', items: ['Cadres', 'Bougies', 'Vases', 'Miroirs', 'Horloges', 'Tableaux'] },
+      { name: 'Art de la table', items: ['Vaisselle', 'Verres', 'Couverts', 'Nappes', 'Sets de table'] },
+      { name: 'Cuisine', items: ['Ustensiles', 'Robots', 'Casseroles & Poêles', 'Rangement'] },
+    ]
+  },
+  {
+    name: 'Divertissement',
+    subcategories: [
+      { name: 'Livres', items: ['Romans', 'BD & Manga', 'Littérature', 'Cuisine', 'Bien-être', 'Scolaire'] },
+      { name: 'Musique & Films', items: ['CD', 'Vinyles', 'DVD', 'Blu-ray'] },
+      { name: 'Jeux vidéo', items: ['PlayStation', 'Xbox', 'Nintendo', 'PC', 'Accessoires'] },
+      { name: 'Sports & Loisirs', items: ['Équipement sportif', 'Vélos', 'Camping', 'Fitness'] },
+    ]
+  },
+  {
+    name: 'Animaux',
+    subcategories: [
+      { name: 'Chiens', items: ['Vêtements', 'Colliers & Laisses', 'Jouets', 'Gamelles', 'Paniers & Coussins'] },
+      { name: 'Chats', items: ['Jouets', 'Arbres à chat', 'Litières', 'Gamelles', 'Griffoirs'] },
+      { name: 'Autres animaux', items: ['Oiseaux', 'Rongeurs', 'Poissons', 'Reptiles'] },
+    ]
+  },
+  {
+    name: 'Traditionnel',
+    subcategories: [
+      { name: 'Femmes', items: ['Boubous', 'Robes Wax', 'Ensembles', 'Tissus', 'Bazin', 'Kaftan'] },
+      { name: 'Hommes', items: ['Grands Boubous', 'Tuniques', 'Ensembles', 'Bazin Riche', 'Dashiki'] },
+      { name: 'Accessoires', items: ['Bijoux traditionnels', 'Sacs', 'Chaussures', 'Chapeaux'] },
+    ]
+  },
 ];
 
 const CategoryNav = () => {
-    const [activeCategory, setActiveCategory] = useState<string | null>(null);
+  const [activeCategory, setActiveCategory] = useState<string | null>(null);
 
-    return (
-        <div className="category-nav">
-            <div className="container">
-                <ul className="nav-list">
-                    {categories.map((category) => (
-                        <li
-                            key={category.name}
-                            className="nav-item"
-                            onMouseEnter={() => setActiveCategory(category.name)}
-                            onMouseLeave={() => setActiveCategory(null)}
-                        >
-                            <Link href={`/?category=${category.name}`} className={`nav-link ${activeCategory === category.name ? 'active' : ''}`}>
-                                {category.name}
-                            </Link>
+  return (
+    <div className="category-nav">
+      <div className="container">
+        <ul className="nav-list">
+          {categories.map((category) => (
+            <li
+              key={category.name}
+              className="nav-item"
+              onMouseEnter={() => setActiveCategory(category.name)}
+              onMouseLeave={() => setActiveCategory(null)}
+            >
+              <Link href={`/?category=${category.name}`} className={`nav-link ${activeCategory === category.name ? 'active' : ''}`}>
+                {category.name}
+              </Link>
 
-                            {activeCategory === category.name && category.subcategories && (
-                                <div className="mega-menu">
-                                    <div className="container menu-content">
-                                        {category.subcategories.map((sub, idx) => (
-                                            <div key={idx} className="menu-column">
-                                                <h4>{sub.name}</h4>
-                                                <ul>
-                                                    {sub.items.map((item, itemIdx) => (
-                                                        <li key={itemIdx}>
-                                                            <Link href={`/?search=${item}`} className="sub-link">
-                                                                {item}
-                                                            </Link>
-                                                        </li>
-                                                    ))}
-                                                </ul>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-                            )}
-                        </li>
+              {activeCategory === category.name && category.subcategories && (
+                <div className="mega-menu">
+                  <div className="container menu-content">
+                    {category.subcategories.map((sub, idx) => (
+                      <div key={idx} className="menu-column">
+                        <h4>{sub.name}</h4>
+                        <ul>
+                          {sub.items.map((item, itemIdx) => (
+                            <li key={itemIdx}>
+                              <Link href={`/?search=${item}`} className="sub-link">
+                                {item}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
                     ))}
-                    <li className="nav-item"><Link href="/about" className="nav-link">À propos</Link></li>
-                    <li className="nav-item"><Link href="/platform" className="nav-link">Notre plateforme</Link></li>
-                </ul>
-            </div>
+                  </div>
+                </div>
+              )}
+            </li>
+          ))}
+          <li className="nav-item"><Link href="/about" className="nav-link">À propos</Link></li>
+          <li className="nav-item"><Link href="/platform" className="nav-link">Notre plateforme</Link></li>
+        </ul>
+      </div>
 
-            <style jsx>{`
+      <style jsx>{`
         .category-nav {
           border-bottom: 1px solid var(--border);
           background: #fff;
@@ -189,8 +211,8 @@ const CategoryNav = () => {
           }
         }
       `}</style>
-        </div>
-    );
+    </div>
+  );
 };
 
 export default CategoryNav;
