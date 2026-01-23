@@ -10,7 +10,7 @@ export default function CartPage() {
     <main>
       <Navbar />
 
-      <div className="container" style={{ padding: '80px 20px', textAlign: 'center', minHeight: '60vh' }}>
+      <div className="container" style={{ padding: '80px 20px', textAlign: 'center', minHeight: '60vh', backgroundColor: 'var(--background)' }}>
         <div style={{ maxWidth: '600px', margin: '0 auto', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2rem' }}>
           <div style={{
             width: '120px',
@@ -40,11 +40,6 @@ export default function CartPage() {
 
       <Footer />
 
-      <style jsx>{`
-        .container {
-          background-color: var(--background);
-        }
-      `}</style>
     </main >
   );
 }
