@@ -87,6 +87,18 @@ export const NavbarStyles = `
     font-weight: bold;
   }
 
+  .sell-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+  }
+
+  .sell-btn svg {
+    color: var(--secondary) !important;
+    stroke-width: 2.5;
+  }
+
   .user-menu-wrapper {
     position: relative;
   }
