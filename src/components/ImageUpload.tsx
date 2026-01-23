@@ -5,44 +5,70 @@ import { Image as ImageIcon, Plus } from 'lucide-react';
 import { useState } from 'react';
 
 interface ImageUploadProps {
-    value: string;
-    onChange: (value: string) => void;
+  value: string;
+  onChange: (value: string) => void;
 }
 
 const ImageUpload = ({ value, onChange }: ImageUploadProps) => {
-    const [url, setUrl] = useState(value);
+  const [url, setUrl] = useState(value);
 
-    const onUpload = (result: any) => {
-        const newUrl = result.info.secure_url;
-        setUrl(newUrl);
-        onChange(newUrl);
-    };
+  const onUpload = (result: any) => {
+    if (result.event !== "success") return;
 
+    const info = result.info;
+    if (info && typeof info === 'object' && 'secure_url' in info) {
+      const newUrl = (info as any).secure_url;
+      setUrl(newUrl);
+      onChange(newUrl);
+    }
+  };
+
+  const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
+  const uploadPreset = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET || "torodo_avenue";
+
+  if (!cloudName) {
     return (
-        <div className="image-upload-container">
-            <CldUploadWidget onUpload={onUpload} uploadPreset={process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET || "torodo_avenue"}>
-                {({ open }) => {
-                    return (
-                        <div
-                            onClick={() => open()}
-                            className={`upload-box ${url ? 'has-image' : ''}`}
-                        >
-                            {url ? (
-                                <img src={url} alt="Product preview" className="preview-image" />
-                            ) : (
-                                <div className="upload-placeholder">
-                                    <div className="icon-circle">
-                                        <Plus size={24} />
-                                    </div>
-                                    <span>Ajouter une photo</span>
-                                </div>
-                            )}
-                        </div>
-                    );
-                }}
-            </CldUploadWidget>
+      <div className="p-4 border border-red-200 rounded text-red-600 text-sm">
+        Erreur: Configuration Cloudinary manquante.
+        (NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME)
+      </div>
+    );
+  }
 
-            <style jsx>{`
+  return (
+    <div className="image-upload-container">
+      <CldUploadWidget
+        onUpload={onUpload}
+        uploadPreset={uploadPreset}
+        options={{
+          maxFiles: 1,
+          sources: ['local', 'camera'],
+          clientAllowedFormats: ['image'],
+          maxImageFileSize: 5000000, // 5MB
+        }}
+      >
+        {({ open }) => {
+          return (
+            <div
+              onClick={() => open()}
+              className={`upload-box ${url ? 'has-image' : ''}`}
+            >
+              {url ? (
+                <img src={url} alt="Product preview" className="preview-image" />
+              ) : (
+                <div className="upload-placeholder">
+                  <div className="icon-circle">
+                    <Plus size={24} />
+                  </div>
+                  <span>Ajouter une photo</span>
+                </div>
+              )}
+            </div>
+          );
+        }}
+      </CldUploadWidget>
+
+      <style jsx>{`
         .image-upload-container {
           width: 100%;
           margin-bottom: 2rem;
@@ -99,8 +125,8 @@ const ImageUpload = ({ value, onChange }: ImageUploadProps) => {
           justify-content: center;
         }
       `}</style>
-        </div>
-    );
+    </div>
+  );
 };
 
 export default ImageUpload;
