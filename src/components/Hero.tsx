@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import React from 'react';
 
 const Hero = () => {
@@ -10,8 +11,8 @@ const Hero = () => {
           <h1>Bienvenue sur <span className="text-secondary">Torodo-Avenue</span></h1>
           <p>La marketplace premium pour acheter et vendre des articles d'exception au Sénégal.</p>
           <div className="hero-actions">
-            <button className="btn btn-secondary">Commencer à vendre</button>
-            <button className="btn btn-outline">Explorer la collection</button>
+            <Link href="/sell" className="btn btn-secondary">Commencer à vendre</Link>
+            <Link href="/#main-collection" className="btn btn-outline">Explorer la collection</Link>
           </div>
         </div>
       </div>

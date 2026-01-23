@@ -49,7 +49,7 @@ export default async function Home({ searchParams }: HomeProps) {
       <Hero />
       <FilterBar categories={categories} />
 
-      <section className={`container ${styles.section}`}>
+      <section id="main-collection" className={`container ${styles.section}`}>
         <div className={styles.sectionHeader}>
           <h2>{search || category ? 'Résultats de recherche' : 'Articles populaires'}</h2>
           <span className={styles.productCount}>{products.length} articles trouvés</span>
