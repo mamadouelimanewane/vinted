@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Search, ShoppingBag, User, PlusCircle, MessageSquare, LogOut, Settings } from 'lucide-react';
 import { NavbarStyles } from './NavbarStyles';
+import CategoryNav from './CategoryNav';
 
 interface NavbarClientProps {
   user?: {
@@ -112,6 +113,8 @@ const NavbarClient = ({ user }: NavbarClientProps) => {
           </div>
         </div>
       </div>
+
+      <CategoryNav />
 
       <style jsx>{NavbarStyles}</style>
     </nav>
