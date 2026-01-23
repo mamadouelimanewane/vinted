@@ -60,7 +60,7 @@ const NavbarClient = ({ user }: NavbarClientProps) => {
 
         <div className="nav-actions">
           <Link href="/sell" className="btn btn-outline sell-btn">
-            <PlusCircle size={20} />
+            <PlusCircle size={24} style={{ color: 'var(--secondary)' }} />
             <span>Vendre</span>
           </Link>
 
