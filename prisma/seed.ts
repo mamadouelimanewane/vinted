@@ -4,6 +4,8 @@ const prisma = new PrismaClient();
 
 async function main() {
     // Clean up existing data
+    await prisma.transaction.deleteMany({});
+    await prisma.message.deleteMany({});
     await prisma.product.deleteMany({});
     await prisma.user.deleteMany({});
     await prisma.category.deleteMany({});
@@ -101,6 +103,77 @@ async function main() {
             condition: 'Comme neuf',
             userId: user1.id,
             categoryId: categories['Traditionnel'],
+        },
+    });
+
+    // Men's Category Products
+    await prisma.product.create({
+        data: {
+            name: 'Ensemble Traditionnel Blanc',
+            description: 'Ensemble tunique et pantalon blanc avec broderies fines.',
+            price: 45000,
+            image: '/images/men-ensemble-white.jpg',
+            brand: 'Tailleur Dakar',
+            size: 'L',
+            condition: 'Neuf',
+            userId: user2.id,
+            categoryId: categories['Hommes'],
+        },
+    });
+
+    await prisma.product.create({
+        data: {
+            name: 'Grand Boubou Vert Émeraude',
+            description: 'Majestueux grand boubou en bazin riche vert émeraude avec broderies assorties.',
+            price: 120000,
+            image: '/images/men-grand-boubou-green.jpg',
+            brand: 'Bazin Riche',
+            size: 'XL',
+            condition: 'Très bon état',
+            userId: user2.id,
+            categoryId: categories['Hommes'],
+        },
+    });
+
+    await prisma.product.create({
+        data: {
+            name: 'Tunique Homme Marron',
+            description: 'Tunique élégante marron chocolat, coupe moderne et ajustée.',
+            price: 35000,
+            image: '/images/men-tunic-brown.jpg',
+            brand: 'Modern Man',
+            size: 'M',
+            condition: 'Bon état',
+            userId: user1.id,
+            categoryId: categories['Hommes'],
+        },
+    });
+
+    await prisma.product.create({
+        data: {
+            name: 'Boubou Blanc Brodé Détails',
+            description: 'Boubou blanc classique avec détails de broderie rouges complexes.',
+            price: 60000,
+            image: '/images/men-boubou-white-details.jpg',
+            brand: 'Artisanat Local',
+            size: 'L',
+            condition: 'Neuf',
+            userId: user2.id,
+            categoryId: categories['Hommes'],
+        },
+    });
+
+    await prisma.product.create({
+        data: {
+            name: 'Ensemble Sportswear Blanc',
+            description: 'Ensemble décontracté veste et pantalon blanc, style urbain.',
+            price: 25000,
+            image: '/images/men-sportswear-white.jpg',
+            brand: 'Urban Style',
+            size: 'M',
+            condition: 'Très bon état',
+            userId: user1.id,
+            categoryId: categories['Hommes'],
         },
     });
 
