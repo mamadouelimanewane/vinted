@@ -55,14 +55,6 @@ const categories = [
     ]
   },
   {
-    name: 'Animaux',
-    subcategories: [
-      { name: 'Chiens', items: ['Vêtements', 'Colliers & Laisses', 'Jouets', 'Gamelles', 'Paniers & Coussins'] },
-      { name: 'Chats', items: ['Jouets', 'Arbres à chat', 'Litières', 'Gamelles', 'Griffoirs'] },
-      { name: 'Autres animaux', items: ['Oiseaux', 'Rongeurs', 'Poissons', 'Reptiles'] },
-    ]
-  },
-  {
     name: 'Traditionnel',
     subcategories: [
       { name: 'Femmes', items: ['Boubous', 'Robes Wax', 'Ensembles', 'Tissus', 'Bazin', 'Kaftan'] },
