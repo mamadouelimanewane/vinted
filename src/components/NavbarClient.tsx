@@ -59,8 +59,8 @@ const NavbarClient = ({ user }: NavbarClientProps) => {
         </form>
 
         <div className="nav-actions">
-          <Link href="/sell" className="btn btn-outline sell-btn">
-            <PlusCircle size={24} style={{ color: 'var(--secondary)' }} />
+          <Link href="/sell" className="btn btn-primary sell-btn">
+            <PlusCircle size={24} style={{ color: 'white' }} />
             <span>Vendre</span>
           </Link>
 

@@ -95,7 +95,7 @@ export const NavbarStyles = `
   }
 
   .sell-btn svg {
-    color: var(--secondary) !important;
+    color: white !important;
     stroke-width: 2.5;
   }
 
